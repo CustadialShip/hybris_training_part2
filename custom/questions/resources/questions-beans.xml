@@ -8,13 +8,13 @@
 
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
 
-	<!--
-		Example Data POJO
-	
-	<bean class="yemptypackage.data.MyPojo">
-		<property name="id" type="String"/>
-		<property name="flag" type="boolean"/>
+	<bean class="de.hybris.platform.commercefacades.product.data.QuestionData">
+		<property name="question" type="String"/>
+		<property name="answer" type="String"/>
 	</bean>
-	-->
+	
+	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
+		<property name="questions" type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.QuestionData>"/>
+	</bean>
 
 </beans>

@@ -1,0 +1,8 @@
+$catalog = apparel-ukContentCatalog
+$catalogVersion = Staged
+$productCV = catalog(catalogVesrion(id[default=$catalog]), version[default=$catalogVersion])
+
+INSERT_UPDATE Question; code[unique = true]; question       ; questionCustomer(uid); answer       ; answerCustomer
+                      ; q01                ; questionText01 ;                      ; answerText01 ;
+                      ; q02                ; questionText02 ;                      ; answerText02 ;
+                      ; q03                ; questionText03 ;                      ; answerText03 ;

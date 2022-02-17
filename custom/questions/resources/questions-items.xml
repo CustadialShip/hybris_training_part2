@@ -6,35 +6,68 @@
 	ATTENTION: This is just an example file. You have to edit it according to your needs.
 -->
 
-<items 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-			xsi:noNamespaceSchemaLocation="items.xsd">
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="items.xsd">
 
-	<itemtypes>
-<!--
-		<itemtype generate="true"
-		   code="MyProduct"
-		   jaloclass="org.training.jalo.MyProduct"
-		   extends="Product"
-		   autocreate="true"
-	   >
-			<attributes>
-				<attribute qualifier="myExampleInitialStringField" type="java.lang.String">
-					<description>My Example Initial String Value</description>
-					<modifiers initial="true"/>
-					<persistence type="property"/>
-				</attribute>
+    <relations>
+        <relation code="Product2Question" localized="false">
+            <sourceElement qualifier="product" type="Product" cardinality="one">
+                <modifiers read="true" write="true"/>
+            </sourceElement>
+            <targetElement qualifier="question" type="Question" cardinality="many" collectiontype="set" ordered="false">
+                <modifiers read="true" write="true"/>
+            </targetElement>
+        </relation>
+    </relations>
 
-				<attribute qualifier="myExampleBooleanField" type="java.lang.Boolean">
-					<description>Example Initial Boolean Field</description>
-               <persistence type="property"/>
-				</attribute>
+    <itemtypes>
+        <itemtype code="Question" generate="true" autocreate="true">
+            <deployment table="Questions" typecode="12732"/>
+            <attributes>
+                <attribute qualifier="code" type="java.lang.String">
+                    <defaultvalue>questionCode01</defaultvalue>
+                    <persistence type="property"/>
+                    <description>Code of Question</description>
+                    <modifiers read="true" write="true" optional="false" unique="true"/>
+                </attribute>
+                <attribute qualifier="question" type="java.lang.String">
+                    <defaultvalue>question01</defaultvalue>
+                    <persistence type="property"/>
+                    <description>Text of question</description>
+                    <modifiers read="true" write="true" optional="false" unique="false"/>
+                </attribute>
+                <attribute qualifier="questionCustomer" type="Customer" autocreate="true" generate="true">
+                    <persistence type="property"/>
+                    <description>Customer who asking the question</description>
+                    <modifiers read="true" write="true" optional="true" unique="false"/>
+                </attribute>
+                <attribute qualifier="answer" type="java.lang.String">
+                    <persistence type="property"/>
+                    <description>The answer to the question</description>
+                    <modifiers read="true" write="true" optional="true" unique="false"/>
+                </attribute>
+                <attribute qualifier="answerCustomer" type="Customer">
+                    <persistence type="property"/>
+                    <description>Customer who answers the question</description>
+                    <modifiers read="true" write="true" optional="true" unique="false"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+        
+        <itemtype code="QuestionsCMSComponent" extends="SimpleCMSComponent">
+            <attributes>
+                <attribute qualifier="numberOfQuestionsToShow" type="java.lang.Integer">
+                    <defaultvalue>3</defaultvalue>
+                    <description>Number of questions to show</description>
+                    <persistence type="property"/>
+                    <modifiers read="true" write="true" optional="false"/>
+                </attribute>
+                <attribute qualifier="fontSize" type="java.lang.Integer">
+                    <description>Font size of the text</description>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
 
-				<attribute qualifier="media" type="Media">
-					<persistence type="property"/>
-				</attribute>
-
-			</attributes>
-		</itemtype>
--->
-	</itemtypes>
+    </itemtypes>
 </items>
