@@ -65,6 +65,12 @@
 			</property>
 	</bean>
 
+	<alias name="customSearchResultProductPopulator" alias="commerceSearchResultProductPopulator"/>
+	<bean name="customSearchResultProductPopulator"
+		  class="de.hybris.training.facades.populators.CustomSearchResultVariantProductPopulator"
+		  parent="variantCommerceSearchResultProductPopulator">
+	</bean>
+
 	<alias name="defaultGenderDataPopulator" alias="genderDataPopulator"/>
 	<bean id="defaultGenderDataPopulator" class="de.hybris.training.facades.populators.GenderDataPopulator" >
 		<property name="typeService" ref="typeService"/>

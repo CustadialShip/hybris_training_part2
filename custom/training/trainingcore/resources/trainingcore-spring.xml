@@ -24,6 +24,10 @@
 
 	<!-- Solr field value providers -->
 
+	<bean id="questionCountProvider" class="de.hybris.training.core.search.solrfacetsearch.provider.impl.QuestionCountProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+	</bean>
+
 	<bean id="volumeAwareProductPriceValueProvider" class="de.hybris.training.core.search.solrfacetsearch.provider.impl.VolumeAwareProductPriceValueProvider"  parent="abstractPropertyFieldValueProvider">
         <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
         <property name="priceService" ref="priceService"/>
