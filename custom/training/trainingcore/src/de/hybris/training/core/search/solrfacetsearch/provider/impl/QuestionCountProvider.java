@@ -1,6 +1,5 @@
 package de.hybris.training.core.search.solrfacetsearch.provider.impl;
 
-import de.hybris.platform.acceleratorservices.dataexport.googlelocal.model.Product;
 import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.solrfacetsearch.config.IndexConfig;
 import de.hybris.platform.solrfacetsearch.config.IndexedProperty;
@@ -8,18 +7,13 @@ import de.hybris.platform.solrfacetsearch.config.exceptions.FieldValueProviderEx
 import de.hybris.platform.solrfacetsearch.provider.FieldNameProvider;
 import de.hybris.platform.solrfacetsearch.provider.FieldValue;
 import de.hybris.platform.solrfacetsearch.provider.FieldValueProvider;
-import de.hybris.training.core.model.ApparelProductModel;
-import de.hybris.training.core.model.ApparelSizeVariantProductModel;
-import de.hybris.training.core.model.ApparelStyleVariantProductModel;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import de.hybris.platform.solrfacetsearch.provider.impl.AbstractPropertyFieldValueProvider;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class QuestionCountProvider implements FieldValueProvider, Serializable {
+public class QuestionCountProvider extends AbstractPropertyFieldValueProvider implements FieldValueProvider {
 
     public static final String ERROR_ITEM_IS_NOT_A_PRODUCT = "Error: item is not a Product type !";
 
@@ -29,8 +23,7 @@ public class QuestionCountProvider implements FieldValueProvider, Serializable {
     public Collection<FieldValue> getFieldValues(IndexConfig indexConfig, IndexedProperty indexedProperty, Object model) throws FieldValueProviderException {
         if(model instanceof ProductModel){
             final ProductModel product = (ProductModel) model;
-            final List<FieldValue> fieldValues = createFieldValue(product, indexConfig, indexedProperty);
-            return fieldValues;
+            return createFieldValue(product, indexConfig, indexedProperty);
         } else {
             throw new FieldValueProviderException(ERROR_ITEM_IS_NOT_A_PRODUCT);
         }

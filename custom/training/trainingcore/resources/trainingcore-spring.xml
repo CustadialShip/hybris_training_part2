@@ -15,6 +15,7 @@
 
 	<!-- Spring Integration -->
 	<import resource="classpath:/trainingcore/integration/hot-folder-store-electronics-spring.xml"/>
+	<import resource="classpath:/trainingcore/integration/hot-folder-store-training-spring.xml"/>
 	<import resource="classpath:/trainingcore/integration/hot-folder-store-apparel-spring.xml"/>
 	<import resource="classpath:/trainingcore/integration/hot-folder-common-spring.xml"/>
 
@@ -24,7 +25,9 @@
 
 	<!-- Solr field value providers -->
 
-	<bean id="questionCountProvider" class="de.hybris.training.core.search.solrfacetsearch.provider.impl.QuestionCountProvider">
+	<bean id="questionCountProvider"
+		  parent="abstractPropertyFieldValueProvider"
+		  class="de.hybris.training.core.search.solrfacetsearch.provider.impl.QuestionCountProvider">
 		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
 	</bean>
 
