@@ -1,8 +1,12 @@
 $catalog = apparel-ukContentCatalog
 $catalogVersion = Staged
-$productCV = catalog(catalogVesrion(id[default=$catalog]), version[default=$catalogVersion])
+$productCV = catalog(catalogVersion(id[default=$catalog]), version[default=$catalogVersion])
 
 INSERT_UPDATE Question; code[unique = true]; question       ; questionCustomer(uid); answer       ; answerCustomer
                       ; q01                ; questionText01 ;                      ; answerText01 ;
                       ; q02                ; questionText02 ;                      ; answerText02 ;
                       ; q03                ; questionText03 ;                      ; answerText03 ;
+
+INSERT PriceRow; currency(isocode); giveAwayPrice; minqtd; net   ; price; product(code, catalogVersion); unit(code); user(uid)
+               ; USD              ; false        ; 3     ; false ; 100  ; 2278102:8796093547097         ; PCE       ; testuser2@test.com
+               ; USD              ; false        ; 5     ; false ; 80   ; 2278102:8796093547097         ; PCE       ; testuser2@test.com
