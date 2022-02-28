@@ -1,0 +1,23 @@
+
+
+INSERT_UPDATE UserPriceGroup; code[unique = true]
+                            ; priceGroupCode
+
+$catalog = apparel-ukContentCatalog
+$catalogVersion = Staged
+$productCV = catalog(catalogVersion(id[default=$catalog]), version[default=$catalogVersion])
+INSERT_UPDATE PriceRow; product(code, $productCV)[unique = true]; ug(code)[allownull = true]; net[unique = true, default = false]; currency; price; unit   ; minqtd; unitFactor
+                      ; 300310300                                        ; priceGroupCode            ;                                    ; US      ; 1111 ; pieces ; 1     ; 1
+
+INSERT_UPDATE Customer; uid[unique = true]; Europe1PriceFactory_UPG(code)
+                      ; customer1         ; priceGroupCode
+
+INSERT_UPDATE PriceRow; product(code, catalogversion(catalog(id), version))[unique = true]; currency(isocode)[unique = true]; unit(code); minqtd; unitFactor; price; net   ; catalogversion(catalog(id), version)
+                      ; product_identifier:sampleProductCatalog:Staged                    ; US                              ; pieces    ; 1     ; 1         ; 169  ; false ; sampleProductCatalog:Staged
+
+$productCatalog=apparel-ukContentCatalog
+$catalogVersionStaged=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
+
+INSERT_UPDATE PriceRow ; product(code, $catalogVersionStaged)[unique=true] ; currency(isocode)[unique=true] ; price  ; net[unique=true,default=false] ; unit(code)[default=pieces]
+                       ; PRODUCT-1                                         ; CAD                            ; 1111  ; false                          ;
+

@@ -10,6 +10,12 @@ public class CustomSearchResultVariantProductPopulator extends SearchResultVaria
 
     @Override
     public void populate(SearchResultValueData source, ProductData target) {
-        target.setQuestionCount(this.<Integer>getValue(source, QUESTION_COUNT));
+        super.populate(source, target);
+        final Object obj = this.getValue(source, QUESTION_COUNT);
+        if (obj != null) {
+            target.setQuestionCount(this.<Integer>getValue(source, QUESTION_COUNT));
+        } else {
+            target.setQuestionCount(0);
+        }
     }
 }

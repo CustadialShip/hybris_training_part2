@@ -65,8 +65,7 @@
 			</property>
 	</bean>
 
-	<alias name="customSearchResultProductPopulator" alias="commerceSearchResultProductPopulator"/>
-	<bean name="customSearchResultProductPopulator"
+	<bean id="customSearchResultVariantProductPopulator"
 		  class="de.hybris.training.facades.populators.CustomSearchResultVariantProductPopulator"
 		  parent="variantCommerceSearchResultProductPopulator">
 	</bean>

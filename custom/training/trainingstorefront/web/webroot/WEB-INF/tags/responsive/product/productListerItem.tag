@@ -46,9 +46,6 @@
 			<div class="product__listing--description">${ycommerce:sanitizeHTML(product.summary)}</div>
 		</c:if>
 
-		<c:if test="${not empty product.questionCount}">
-			${product.questionCount}
-		</c:if>
 
 		<c:set var="product" value="${product}" scope="request"/>
 		<c:set var="addToCartText" value="${addToCartText}" scope="request"/>
@@ -58,7 +55,14 @@
 				<action:actions element="div" parentComponent="${component}"  />
 			</div>
 		</div>
-
+		<c:choose>
+			<c:when test="${not empty product.questionCount}">
+				questions number: ${product.questionCount}
+			</c:when>
+			<c:otherwise>
+				questions number: 0
+			</c:otherwise>
+		</c:choose>
 	</ycommerce:testId>
 </li>
 

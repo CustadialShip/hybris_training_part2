@@ -9,11 +9,12 @@ import de.hybris.platform.solrfacetsearch.provider.FieldValue;
 import de.hybris.platform.solrfacetsearch.provider.FieldValueProvider;
 import de.hybris.platform.solrfacetsearch.provider.impl.AbstractPropertyFieldValueProvider;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class QuestionCountProvider extends AbstractPropertyFieldValueProvider implements FieldValueProvider {
+public class QuestionCountProvider extends AbstractPropertyFieldValueProvider implements FieldValueProvider, Serializable {
 
     public static final String ERROR_ITEM_IS_NOT_A_PRODUCT = "Error: item is not a Product type !";
 
@@ -21,7 +22,7 @@ public class QuestionCountProvider extends AbstractPropertyFieldValueProvider im
 
     @Override
     public Collection<FieldValue> getFieldValues(IndexConfig indexConfig, IndexedProperty indexedProperty, Object model) throws FieldValueProviderException {
-        if(model instanceof ProductModel){
+        if (model instanceof ProductModel) {
             final ProductModel product = (ProductModel) model;
             return createFieldValue(product, indexConfig, indexedProperty);
         } else {
@@ -36,13 +37,14 @@ public class QuestionCountProvider extends AbstractPropertyFieldValueProvider im
         return fieldValues;
     }
 
-    private void addFieldValues(List<FieldValue> fieldValues, IndexedProperty indexedProperty,  Integer questionCount) {
+    private void addFieldValues(List<FieldValue> fieldValues, IndexedProperty indexedProperty, Integer questionCount) {
         final Collection<String> fieldNames = fieldNameProvider.getFieldNames(indexedProperty, null);
-        fieldNames.forEach(fieldName -> fieldValues.add(new FieldValue(fieldName, questionCount)));
+        for (final String fieldName : fieldNames) {
+            fieldValues.add(new FieldValue(fieldName, questionCount));
+        }
     }
 
-    public void setFieldNameProvider(final FieldNameProvider fieldNameProvider)
-    {
+    public void setFieldNameProvider(final FieldNameProvider fieldNameProvider) {
         this.fieldNameProvider = fieldNameProvider;
     }
 }
